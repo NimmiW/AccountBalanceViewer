@@ -5,6 +5,12 @@ namespace WebApplication5.Models
 {
     // Models returned by AccountController actions.
 
+    public class RoleUserModel
+    {
+        public string Email { get; set; }
+        public string Role { get; set; }
+    }
+
     public class ExternalLoginViewModel
     {
         public string Name { get; set; }
@@ -32,6 +38,8 @@ namespace WebApplication5.Models
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
+
+        public string Role { get; set; }
     }
 
     public class UserLoginInfoViewModel
