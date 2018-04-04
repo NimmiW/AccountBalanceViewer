@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication5.Controllers
 {
-    //[Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN")]
     public class TransactionsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -28,13 +28,60 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
+            DateTime time = DateTime.Now;
 
-            /*if (!result.Succeeded)
+            Transaction t1 = new Transaction();
+            t1.Month = model.month;
+            t1.Year = model.year;
+            t1.AccountId = 1;
+            t1.Amount = model.RandD;
+            t1.EnteredDateTime = time;
+ 
+
+            Transaction t2 = new Transaction();
+            t2.Month = model.month;
+            t2.Year = model.year;
+            t2.AccountId = 2;
+            t2.Amount = model.Canteen;
+            t2.EnteredDateTime = time;
+
+            Transaction t3 = new Transaction();
+            t3.Month = model.month;
+            t3.Year = model.year;
+            t3.AccountId = 3;
+            t3.Amount = model.CEOCar;
+            t3.EnteredDateTime = time;
+
+            Transaction t4 = new Transaction();
+            t4.Month = model.month;
+            t4.Year = model.year;
+            t4.AccountId = 4;
+            t4.Amount = model.Marketing;
+            t4.EnteredDateTime = time;
+
+            Transaction t5 = new Transaction();
+            t5.Month = model.month;
+            t5.Year = model.year;
+            t5.AccountId = 5;
+            t5.Amount = model.ParkingFines;
+            t5.EnteredDateTime = time;
+
+            Transaction[] transactionArray = { t1, t2, t3, t4, t5 };
+
+            try
             {
-                return BadRequest(ModelState); 
-            }*/
-
-            return Ok("All the trasactions were added.");
+                foreach (Transaction t in transactionArray)
+                {
+                    db.Transactions.Add(t);
+                    db.SaveChanges();
+                }
+                return Ok("All the trasactions were added.");
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+           
         }
 
         // GET: api/Transactions
@@ -60,19 +107,20 @@ namespace WebApplication5.Controllers
             {
                 BusinessAccount[] accountList = accounts.Where(p => (p.Id == transaction.AccountId)).ToArray();
 
-                BusinessAccount account = accountList[0];
-                Balance balance = new Balance();
-                balance.accountName = account.AccountDisplayName;
-                balance.accountId = account.Id;
-                balance.transactionId = transaction.Id;
-                balance.amount = transaction.Amount;
-                balance.enteredDateTime = transaction.EnteredDateTime;
-                balance.month = month;
-                balance.year = year;
-
-
-                balances.Add(balance);
-
+                if (accountList.Length != 0)
+                {
+                    BusinessAccount account = accountList[0];
+                    Balance balance = new Balance();
+                    balance.accountName = account.AccountDisplayName;
+                    balance.accountId = account.Id;
+                    balance.transactionId = transaction.Id;
+                    balance.amount = transaction.Amount;
+                    balance.enteredDateTime = transaction.EnteredDateTime;
+                    balance.month = month;
+                    balance.year = year;
+                    balances.Add(balance);
+                }
+                
             }
 
             return Ok(balances);
