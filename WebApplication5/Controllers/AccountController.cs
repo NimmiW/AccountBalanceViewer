@@ -145,20 +145,6 @@ namespace WebApplication5.Controllers
             return Ok("USer was successfully added");
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
-        [Route("Login")]
-        public Task Login(OAuthTokenEndpointContext context)
-        {
-            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
-            {
-                context.AdditionalResponseParameters.Add(property.Key, property.Value);
-            }
-
-            return Task.FromResult<object>(null);
-        }
-
-
-
         #region Helpers
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
