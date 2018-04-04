@@ -17,4 +17,15 @@ namespace WebApplication5.Models
         public int AccountId { get; set; }
         public int Amount { get; set; }
     }
+
+    public class ExcelDataBinding
+    {
+        public int month { get; set; }
+        public int year { get; set; }
+        public int RandD { get; set; }
+        public int CEOCar { get; set; }
+        public int Canteen { get; set; }
+        public int Marketing { get; set; }
+        public int ParkingFines { get; set; }
+    }
 }

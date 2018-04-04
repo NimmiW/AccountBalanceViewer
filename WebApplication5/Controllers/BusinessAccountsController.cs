@@ -21,7 +21,8 @@ namespace WebApplication5.Controllers
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IQueryable<BusinessAccount> GetAccounts()
         {
-            return db.Accounts;
+
+            return db.Accounts;       
         }
 
         // GET: api/Accounts/5

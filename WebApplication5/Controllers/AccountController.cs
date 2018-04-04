@@ -142,7 +142,7 @@ namespace WebApplication5.Controllers
                 return GetErrorResult(result);
             }
 
-            return Ok("USer was successfully added");
+            return Ok("User was successfully added");
         }
 
         #region Helpers

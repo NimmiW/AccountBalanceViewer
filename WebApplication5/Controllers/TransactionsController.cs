@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebApplication5.Models;
 using System.Web.Http.Cors;
+using System.Threading.Tasks;
 
 namespace WebApplication5.Controllers
 {
@@ -18,12 +19,29 @@ namespace WebApplication5.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [Route("api/Transactions/ExcelData")]
+        public async Task<IHttpActionResult> ExcelData(ExcelDataBinding model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            /*if (!result.Succeeded)
+            {
+                return BadRequest(ModelState); 
+            }*/
+
+            return Ok("All the trasactions were added.");
+        }
+
         // GET: api/Transactions
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [ResponseType(typeof(Balance[]))]
         public IHttpActionResult GetTransactions(int month, int year)
         {
-
 
             List<BusinessAccount> accounts = db.Accounts.ToList();
 
@@ -56,9 +74,6 @@ namespace WebApplication5.Controllers
                 balances.Add(balance);
 
             }
-
-
-
 
             return Ok(balances);
         }
@@ -176,6 +191,13 @@ namespace WebApplication5.Controllers
         private bool TransactionExists(long id)
         {
             return db.Transactions.Count(e => e.Id == id) > 0;
+        }
+
+        //GET: test
+        public IHttpActionResult Test(int month, int year)
+        {
+            string name = "nimmi : " + month;
+            return Ok(new { name });
         }
     }
 }
