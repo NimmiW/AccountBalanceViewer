@@ -35,8 +35,5 @@ namespace WebApplication5.Models
 
         public System.Data.Entity.DbSet<WebApplication5.Models.BusinessAccount> Accounts { get; set; }
 
-        //public System.Data.Entity.DbSet<WebApplication5.Models.AspNetUser> Users { get; set; }
-
-        //public System.Data.Entity.DbSet<WebApplication5.Models.AspNetRole> Roles { get; set; }
     }
 }

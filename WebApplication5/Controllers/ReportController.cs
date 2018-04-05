@@ -22,7 +22,7 @@ namespace WebApplication5.Controllers
         private string[] accountNames = new string[] { "RandD", "Canteen", "CEOCar", "Marketing", "ParkingFines" };
 
 
-        private void Populate<T>(T[] arr, T value)
+        public void Populate<T>(T[] arr, T value)
         {
             for (int i = 0; i < arr.Length; i++)
             {

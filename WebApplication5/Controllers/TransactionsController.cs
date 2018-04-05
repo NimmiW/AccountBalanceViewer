@@ -241,11 +241,5 @@ namespace WebApplication5.Controllers
             return db.Transactions.Count(e => e.Id == id) > 0;
         }
 
-        //GET: test
-        public IHttpActionResult Test(int month, int year)
-        {
-            string name = "nimmi : " + month;
-            return Ok(new { name });
-        }
     }
 }
