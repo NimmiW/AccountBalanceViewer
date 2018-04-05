@@ -42,12 +42,6 @@ Azure Paas I used:
 - resource group
 - app service plan
 
-**Complemeted Level**
-About 85 percent of the workload of the assignment was completed.
-
-**ToDos**
-- Unit Testing Testing
-
 **Tutorials followed**
 - https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-dotnet-framework
 - https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/azure-apps/azure-continuous-deployment
